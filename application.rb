@@ -3,6 +3,6 @@ class Application < Sinatra::Base
   set :logging, true
 
   get '/' do
-    haml :index
+    erb :index
   end
 end

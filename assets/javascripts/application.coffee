@@ -1,2 +1,2 @@
-#= require vendor/jaws
+#= require_tree ./vendor
 
