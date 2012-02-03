@@ -25,6 +25,18 @@
 		<div class="page-header">
 			<h1>Movie Dnldr &nbsp;<small>Seriously, it's legal.</small></h1>
 		</div>
+		<% if session[:message] %>
+		<div class="alert alert-success">
+		  <%= session[:message] %>
+		  <% session[:message] = nil %>
+		</div>
+		<% end %>
+		<% if session[:error] %>
+		<div class="alert alert-error">
+		  <%= session[:error] %>
+		  <% session[:error] = nil %>
+		</div>
+		<% end %>
 		<div class="row" style="padding-left: 20px">
 			<%= yield %>
 		</div>
