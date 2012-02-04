@@ -13,7 +13,7 @@ class Application < Sinatra::Base
 
     redirect '/500' if movie.nil?
     
-    output = `cd ~/Sites/the_rotten_pirate && bundle exec rake download['#{movie}']`
+    output = `cd ~/Sites/the_rotten_pirate && bundle exec rake download['#{movie}'] --trace`
     puts output 
     if output
       session[:message] = 'Your download started successfully!'
