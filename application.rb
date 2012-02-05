@@ -11,15 +11,13 @@ class Application < Sinatra::Base
   post '/download' do
     movie = params[:movie]
 
-    redirect '/500' if movie.nil?
-    
-    output = `cd ~/Sites/the_rotten_pirate && bundle exec rake download['#{movie}'] --trace`
-    puts output 
-    if output
-      session[:message] = 'Your download started successfully!'
+    if movie.nil? || movie.strip.empty?
+      session[:error] = 'You must enter a title to download'
+      redirect '/' 
     else
-      session[:error] = 'Your download failed for some reason...'
+      File.open('movies_to_download.txt', 'a') { |f| f.puts "#{movie}" }
+      session[:message] = 'Your download was queued successfully!'
+      redirect '/'
     end
-    redirect '/'
   end
 end
